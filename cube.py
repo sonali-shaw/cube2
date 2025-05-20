@@ -1,4 +1,6 @@
 import face
+import random
+import numpy
 
 class Cube:
 
@@ -9,7 +11,8 @@ class Cube:
                  post = [],
                  top = [],
                  bottom = [],
-                 scramble = False):
+                 scramble = False,
+                 scramble_num = 25):
 
         # create presolved cube
         sum_lens = len(front) + len(left) + len(right) + len(post) + len(top) + len(bottom)
@@ -20,6 +23,9 @@ class Cube:
             self.post_face = face.Face(val='y')
             self.top_face = face.Face(val='o')
             self.bottom_face = face.Face(val='r')
+
+        if scramble:
+            self.scramble(scramble_num)
 
         # given specific values for each face
         # note: to do this the user should pass in faces to each of the parameters
@@ -190,5 +196,24 @@ class Cube:
                     if value != face.get_row(0)[0]:
                         return False
         return True
+
+    def scramble(self, num_moves=25):
+        moves = ['f+', 'f-', 'f2', 'l+', "l-", 'l2', "r+", "r-", 'r2', "b+", "b-", 'b2', "t+", "t-", 't2', "p+", "p-", 'p2']
+        archive = []
+
+        for _ in range(num_moves):
+
+            rand_int = random.randint(0, len(moves) - 1)
+            self.move(moves[rand_int])
+
+            archive.append(moves[rand_int])
+
+        return archive
+
+cube1 = Cube()
+record = cube1.scramble(3)
+
+print(record)
+cube1.print_cube()
 
 
