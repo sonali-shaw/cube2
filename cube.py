@@ -1,6 +1,5 @@
 import face
 import random
-import numpy
 
 class Cube:
 
@@ -210,10 +209,10 @@ class Cube:
 
         return archive
 
-cube1 = Cube()
-record = cube1.scramble(3)
-
-print(record)
-cube1.print_cube()
+# cube1 = Cube()
+# record = cube1.scramble(3)
+#
+# print(record)
+# cube1.print_cube()
 
 
